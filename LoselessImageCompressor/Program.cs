@@ -19,7 +19,7 @@ namespace LoselessImageCompressor
         static void Main(string[] args)
         {
             Console.WriteLine(
-@"Loseless Image Compressor 1.0 / 06 February 2018
+@"Loseless Image Compressor 1.0 / 24 February 2018
 Author: Rustam Khuzin
 E-mail: infernumdeus@mail.ru
 GitHub: github.com/InfernumDeus
