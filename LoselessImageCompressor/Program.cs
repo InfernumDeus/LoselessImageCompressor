@@ -1,12 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Windows.Forms;
-using ImageMagick;
 using System.IO.IsolatedStorage;
-using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using ImageMagick;
 
 namespace LoselessImageCompressor
 {
@@ -19,7 +17,7 @@ namespace LoselessImageCompressor
         static void Main(string[] args)
         {
             Console.WriteLine(
-@"Loseless Image Compressor 1.0 / 24 February 2018
+@"Loseless Image Compressor 1.1 / 26 February 2018
 Author: Rustam Khuzin
 E-mail: infernumdeus@mail.ru
 GitHub: github.com/InfernumDeus
@@ -46,8 +44,8 @@ Please select directory"
 
             optimizer = new ImageOptimizer();
 
-            var fbd = new FolderBrowserDialog();
-            if (fbd.ShowDialog() == DialogResult.Cancel) return;
+            var fbd = new System.Windows.Forms.FolderBrowserDialog();
+            if (fbd.ShowDialog() == System.Windows.Forms.DialogResult.Cancel) return;
 
             Console.WriteLine("Searching images");
             Queue<string> filesQueue = null;
@@ -124,6 +122,7 @@ Please select directory"
                         Console.WriteLine("({0}/{1}) {2}", filesCounter, numberOfFiles, filepath);
                     }
 
+                    bool originalFileSizeRegistered = false;
                     try
                     {
                         originalFile = new FileInfo(filepath);
@@ -132,6 +131,7 @@ Please select directory"
 
                         decimal originalFileSize = originalFile.Length;
                         before += originalFileSize;
+                        originalFileSizeRegistered = true;
 
                         DateTime[] timestamps = new DateTime[3];
                         timestamps[0] = originalFile.CreationTime;
@@ -178,7 +178,7 @@ Please select directory"
                     }
                     finally
                     {
-                        after += originalFile.Length;
+                        if (originalFileSizeRegistered) after += originalFile.Length;
                     }
                 }
             }         
