@@ -19,16 +19,17 @@ namespace LoselessImageCompressor
 
         public static Queue<string> FindValidFiles(string root, Func<string, bool> isFileValid, Func<string, bool> isFolderValid)
         {
-            if (root == null) { throw new ArgumentNullException("root"); }
-            if (string.IsNullOrWhiteSpace(root)) { throw new ArgumentException("The passed value may not be empty or whithespace", "root"); }
+            if (root == null) throw new ArgumentNullException("root");
+            if (string.IsNullOrWhiteSpace(root))
+                throw new ArgumentException("The passed value may not be empty or whithespace", "root");
 
             var files = new Queue<string>();
 
             var rootDirectory = new DirectoryInfo(root);
-            if (rootDirectory.Exists == false) { return files; }
+            if (rootDirectory.Exists == false) return files;
 
             root = rootDirectory.FullName;
-            if (isFolderValid(root) == false) { return files; }
+            if (isFolderValid(root) == false) return files;
 
             var folders = new Queue<string>();
             folders.Enqueue(root);
@@ -42,7 +43,8 @@ namespace LoselessImageCompressor
                     var currentFiles = Directory.EnumerateFiles(currentFolder, "*.*").Where(f => isFileValid(f));
                     foreach (string file in currentFiles)
                     {
-                        files.Enqueue(file);
+                        if (!String.IsNullOrEmpty(file))
+                            files.Enqueue(file);
                     }
                 }
                 catch (IOException) { }

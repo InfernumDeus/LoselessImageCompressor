@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.IO.IsolatedStorage;
@@ -17,7 +17,7 @@ namespace LoselessImageCompressor
         static void Main(string[] args)
         {
             Console.WriteLine(
-@"Loseless Image Compressor 1.1 / 26 February 2018
+@"Loseless Image Compressor 1.2 / 15 April 2018
 Author: Rustam Khuzin
 E-mail: infernumdeus@mail.ru
 GitHub: github.com/InfernumDeus
@@ -172,8 +172,6 @@ Please select directory"
                         Console.WriteLine("Unexpected error: " + ex.GetType().Name);
                         Console.WriteLine(ex.Message);
                         Console.WriteLine("Occured when working with file: " + filepath);
-                        Console.WriteLine("Press Enter to close");
-                        Console.ReadLine();
                         return false;
                     }
                     finally

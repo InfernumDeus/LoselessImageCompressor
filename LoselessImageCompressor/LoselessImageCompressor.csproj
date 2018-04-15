@@ -74,7 +74,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FileHelper.cs" />
-    <Compile Include="IsolatedStorageManager .cs" />
+    <Compile Include="IsolatedStorageManager.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
